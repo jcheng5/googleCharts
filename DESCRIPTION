@@ -1,0 +1,23 @@
+Package: googleCharts
+Type: Package
+Title: Google Charts bindings for Shiny
+Version: 0.1.0
+Date: 2013-06-29
+Author: RStudio, Inc.
+Maintainer: Joe Cheng <joe@joecheng.com>
+Description: Functions for embedding Google Charts output in Shiny.
+License: GPL-3
+Depends:
+    R (>= 2.14.1)
+Imports:
+    shiny,
+    RJSONIO,
+    stats,
+    tools,
+    utils,
+    methods
+URL: http://github.com/jcheng5/googleCharts
+BugReports: http://github.com/jcheng5/googleCharts/issues
+Collate:
+    'datatable.R'
+    'outputs.R'

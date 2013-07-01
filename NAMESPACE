@@ -1,0 +1,7 @@
+export(column)
+export(googleAreaChart)
+export(googleBarChart)
+export(googleChartsInit)
+export(googleDataTable)
+export(googleGauge)
+export(googleScatterChart)
