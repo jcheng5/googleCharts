@@ -102,6 +102,11 @@ googleOutput <- function(outputId, class, width, height, options, ...) {
 }
 
 #' @export
+googleAnnotatedTimeLine <- function(id, width, height, options = list(), ...) {
+  googleOutput(id, 'annotatedtimeline', width, height, options, ...)
+}
+
+#' @export
 googleAreaChart <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'area', width, height, options, ...)
 }
@@ -112,11 +117,91 @@ googleBarChart <- function(id, width, height, options = list(), ...) {
 }
 
 #' @export
-googleScatterChart <- function(id, width, height, options = list(), ...) {
-  googleOutput(id, 'scatter', width, height, options, ...)
+googleBubbleChart <- function(id, width, height, options = list(), ...) {
+  googleOutput(id, 'bubble', width, height, options, ...)
+}
+
+#' @export
+googleCandlestickChart <- function(id, width, height, options = list(), ...) {
+  googleOutput(id, 'candlestick', width, height, options, ...)
+}
+
+#' @export
+googleColumnChart <- function(id, width, height, options = list(), ...) {
+  googleOutput(id, 'column', width, height, options, ...)
+}
+
+#' @export
+googleComboChart <- function(id, width, height, options = list(), ...) {
+  googleOutput(id, 'combo', width, height, options, ...)
 }
 
 #' @export
 googleGauge <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'gauge', width, height, options, ...)
+}
+
+#' @export
+googleGeoChart <- function(id, width, height, options = list(), ...) {
+  googleOutput(id, 'geo', width, height, options, ...)
+}
+
+#' @export
+googleGeoMap <- function(id, width, height, options = list(), ...) {
+  googleOutput(id, 'geomap', width, height, options, ...)
+}
+
+#' @export
+googleIntensityMap <- function(id, width, height, options = list(), ...) {
+  googleOutput(id, 'intensitymap', width, height, options, ...)
+}
+
+#' @export
+googleLineChart <- function(id, width, height, options = list(), ...) {
+  googleOutput(id, 'line', width, height, options, ...)
+}
+
+#' @export
+googleMap <- function(id, width, height, options = list(), ...) {
+  googleOutput(id, 'map', width, height, options, ...)
+}
+
+#' @export
+googleMotionChart <- function(id, width, height, options = list(), ...) {
+  googleOutput(id, 'motion', width, height, options, ...)
+}
+
+#' @export
+googleOrgChart <- function(id, width, height, options = list(), ...) {
+  googleOutput(id, 'org', width, height, options, ...)
+}
+
+#' @export
+googlePieChart <- function(id, width, height, options = list(), ...) {
+  googleOutput(id, 'pie', width, height, options, ...)
+}
+
+#' @export
+googleScatterChart <- function(id, width, height, options = list(), ...) {
+  googleOutput(id, 'scatter', width, height, options, ...)
+}
+
+#' @export
+googleSteppedAreaChart <- function(id, width, height, options = list(), ...) {
+  googleOutput(id, 'steppedarea', width, height, options, ...)
+}
+
+#' @export
+googleTableChart <- function(id, width, height, options = list(), ...) {
+  googleOutput(id, 'table', width, height, options, ...)
+}
+
+# #' @export
+# googleTimeline <- function(id, width, height, options = list(), ...) {
+#   googleOutput(id, 'timeline', width, height, options, ...)
+# }
+
+#' @export
+googleTreeMap <- function(id, width, height, options = list(), ...) {
+  googleOutput(id, 'treemap', width, height, options, ...)
 }
