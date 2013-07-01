@@ -1,3 +1,5 @@
+library(googleCharts)
+
 maxValue <- 4
 
 shinyServer(function(input, output, session) {
@@ -46,8 +48,8 @@ shinyServer(function(input, output, session) {
     print(input$chart_selection)
     
     isolate({
-      rownum <- input$chart_selection[['row']]
-      # Column numbers are 0-based in Google parlance, but 1-based in R
+      # Indices are 0-based in Google parlance, but 1-based in R
+      rownum <- input$chart_selection[['row']] + 1
       colnum <- input$chart_selection[['column']] + 1
       
       data <- rnd()
