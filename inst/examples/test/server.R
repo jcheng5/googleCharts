@@ -5,7 +5,7 @@ maxValue <- 4
 shinyServer(function(input, output, session) {
 
   rnd <- reactive({
-    invalidateLater(6000, session)
+    invalidateLater(4000, session)
 
     len <- 10
     data.frame(
@@ -36,16 +36,17 @@ shinyServer(function(input, output, session) {
     invalidateLater(1000, session)
     list(
       data = googleDataTable(
-        data.frame(Value = I(runif(1, min=0, max=100)))
+        data.frame(
+          Temperature = I(runif(1, min=0, max=100)),
+          Pressure = I(runif(1, min=0, max=100))
+        )
       )
     )
   })
 
-  output$selected <- renderTable({
+  output$selected <- reactive({
     if (is.null(input$chart_selection))
       return(NULL)
-    
-    print(input$chart_selection)
     
     isolate({
       # Indices are 0-based in Google parlance, but 1-based in R
@@ -57,7 +58,7 @@ shinyServer(function(input, output, session) {
       colname <- names(data)[[colnum]]
       df <- data.frame(x = row$x)
       df[[colname]] <- row[1,colname]
-      df
+      list(data = googleDataTable(df))
     })
   })
 

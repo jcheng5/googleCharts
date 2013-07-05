@@ -24,6 +24,17 @@ chartlibs = list(
   treemap = 'treemap'
 )
 
+#' Initialize Google Charts
+#' 
+#' This must be called in \code{shinyUI} to load the appropriate Google 
+#' Charts JavaScript libraries into the page.
+#' 
+#' @param chartTypes Character vector that specifies the types of charts
+#'   that will be used on this page.
+#'
+#' @examples
+#' TODO
+#'   
 #' @export
 googleChartsInit <- function(chartTypes = c('ALL',
   'annotatedtimeline',
@@ -78,6 +89,15 @@ joinattr <- function(name, value, attrs) {
     return(paste(value, attrs[[name]]))
 }
 
+#' Set selection on active Google Chart
+#' @export
+googleSetSelection <- function(session, id, selection) {
+  session$sendCustomMessage(
+    'googleCharts.setSelection',
+    list(id = id, selection = selection)
+  )
+}
+
 googleOutput <- function(outputId, class, width, height, options, ...) {
   args <- list(...)
   
@@ -86,7 +106,6 @@ googleOutput <- function(outputId, class, width, height, options, ...) {
   style <- sprintf('width:%s;height:%s;',
     validateCssUnit(width), validateCssUnit(height))
   args$style <- joinattr('style', style, args)
-  print(args$style)
   args$id <- outputId
   
   # By default, empty lists are stringified to [], not {}. The client
@@ -101,106 +120,146 @@ googleOutput <- function(outputId, class, width, height, options, ...) {
   ))
 }
 
+#' Create a Google Chart
+#' 
+#' These functions are intended to be used in a Shiny application's ui.R
+#' file to create a Google chart of the appropriate type. \strong{Don't 
+#' forget to call \code{\link{googleChartsInit}} in the ui.R file as
+#' well!}
+#' 
+#' @param id The output variable name for this chart.
+#' @param width The width of the chart, in CSS units (e.g. 
+#'   \code{"600px"} (for 600 pixels), \code{"75\%"}, or \code{"auto"}) 
+#'   or as a number (for pixels).
+#' @param height The width of the chart, in CSS units or as a number.
+#' @param options A list containing named chart options, to be used when
+#'   creating the chart. Nested lists should be used for nested options,
+#'   e.g. \code{list(hAxis = list(maxValue = 100))}.
+#' @param ... Additional tag attributes or child elements to include in 
+#'   the chart's \code{<div>}.
+#'
+#' @examples TODO
+#'   
+#' @rdname googleChart
 #' @export
 googleAnnotatedTimeLine <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'annotatedtimeline', width, height, options, ...)
 }
 
+#' @rdname googleChart
 #' @export
 googleAreaChart <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'area', width, height, options, ...)
 }
 
+#' @rdname googleChart
 #' @export
 googleBarChart <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'bar', width, height, options, ...)
 }
 
+#' @rdname googleChart
 #' @export
 googleBubbleChart <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'bubble', width, height, options, ...)
 }
 
+#' @rdname googleChart
 #' @export
 googleCandlestickChart <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'candlestick', width, height, options, ...)
 }
 
+#' @rdname googleChart
 #' @export
 googleColumnChart <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'column', width, height, options, ...)
 }
 
+#' @rdname googleChart
 #' @export
 googleComboChart <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'combo', width, height, options, ...)
 }
 
+#' @rdname googleChart
 #' @export
 googleGauge <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'gauge', width, height, options, ...)
 }
 
+#' @rdname googleChart
 #' @export
 googleGeoChart <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'geo', width, height, options, ...)
 }
 
+#' @rdname googleChart
 #' @export
 googleGeoMap <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'geomap', width, height, options, ...)
 }
 
+#' @rdname googleChart
 #' @export
 googleIntensityMap <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'intensitymap', width, height, options, ...)
 }
 
+#' @rdname googleChart
 #' @export
 googleLineChart <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'line', width, height, options, ...)
 }
 
+#' @rdname googleChart
 #' @export
 googleMap <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'map', width, height, options, ...)
 }
 
+#' @rdname googleChart
 #' @export
 googleMotionChart <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'motion', width, height, options, ...)
 }
 
+#' @rdname googleChart
 #' @export
 googleOrgChart <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'org', width, height, options, ...)
 }
 
+#' @rdname googleChart
 #' @export
 googlePieChart <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'pie', width, height, options, ...)
 }
 
+#' @rdname googleChart
 #' @export
 googleScatterChart <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'scatter', width, height, options, ...)
 }
 
+#' @rdname googleChart
 #' @export
 googleSteppedAreaChart <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'steppedarea', width, height, options, ...)
 }
 
+#' @rdname googleChart
 #' @export
-googleTableChart <- function(id, width, height, options = list(), ...) {
+googleTable <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'table', width, height, options, ...)
 }
 
-# #' @export
 # googleTimeline <- function(id, width, height, options = list(), ...) {
 #   googleOutput(id, 'timeline', width, height, options, ...)
 # }
+NULL
 
+#' @rdname googleChart
 #' @export
 googleTreeMap <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'treemap', width, height, options, ...)

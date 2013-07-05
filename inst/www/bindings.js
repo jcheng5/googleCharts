@@ -1,9 +1,14 @@
+(function() {
+
 google.setOnLoadCallback(function() {
   window.isGoogleLoaded = true;
   $(document).trigger('googleLoaded');
 });
 
 function toDataTable(data) {
+  if (data === null)
+    return null;
+
   var cols = data.cols;
   var df = data.data;
   
@@ -45,12 +50,16 @@ function waitForGoogleLoad(func) {
   }
 }
 
+var pendingSelection = {};
+
 // Create or update the Google chart on the el, as directed by
 // the dataObj.
 function constructGoogleChart(el, name, data, options, Chart) {
   var $el = $(el);
   var chart = $el.data('googleChart');
   if (!chart) {
+    if (!data)
+      return;
     chart = new Chart(el);
     $el.data('googleChart', chart);
     chart.options = JSON.parse($el.children('script').text());
@@ -66,8 +75,16 @@ function constructGoogleChart(el, name, data, options, Chart) {
     });
   }
   
-  var currentOptions = $.extend(true, chart.options, options);
-  chart.draw(data, currentOptions);
+  if (data) {
+    var currentOptions = $.extend(true, chart.options, options);
+    chart.draw(data, currentOptions);
+    if (pendingSelection[name]) {
+      chart.setSelection(pendingSelection[name]);
+    }
+  } else {
+    chart.clearChart();
+  }
+  delete pendingSelection[name];
   chart.data = data;
 }
 
@@ -78,6 +95,10 @@ function createBinding(chartName, chartType) {
       return $(scope).find('.shiny-google-' + chartName + '-output');
     },
     renderValue: function(el, dataObj) {
+      if (dataObj === null) {
+        dataObj = {data: null, options: null};
+      }
+
       var self = this;
       waitForGoogleLoad(function() {
         constructGoogleChart(el, self.getId(el),
@@ -111,7 +132,7 @@ var chartTypes = [
   ['pie', 'PieChart', 'corechart'],
   ['scatter', 'ScatterChart', 'corechart'],
   ['steppedarea', 'SteppedAreaChart', 'corechart'],
-  ['table', 'TableChart', 'table'],
+  ['table', 'Table', 'table'],
   ['timeline', 'Timeline', 'timeline'], // requires gvis 1.1...?
   ['treemap', 'TreeMap', 'treemap'],
 ];
@@ -122,3 +143,17 @@ for (var i = 0; i < chartTypes.length; i++) {
     chartTypes[i][1]
   );
 }
+
+Shiny.addCustomMessageHandler(
+  'googleCharts.setSelection',
+  function(data) {
+    var $chart = $('#' + data.id);
+    if ($chart.length === 0 || !$chart.data('googleChart')) {
+      pendingSelection[data.id] = data.selection;
+    } else {
+      $chart.data('googleChart').setSelection(data.selection);
+    }
+  }
+);
+
+})();

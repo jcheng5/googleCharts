@@ -9,8 +9,8 @@ shinyUI(basicPage(
       )
     )
   ),
-  tableOutput('selected'),
-  googleGauge('gauge', width='100%', height='400px',
+  googleTable('selected', width='200px', height='100px'),
+  googleGauge('gauge', width='100%', height='200px',
     list(
       redFrom = 90,
       redTo = 100,
