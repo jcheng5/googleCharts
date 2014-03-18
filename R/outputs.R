@@ -21,7 +21,8 @@ chartlibs = list(
   steppedarea = 'corechart',
   table = 'table',
   # timeline = 'timeline', # requires version 1.1...?
-  treemap = 'treemap'
+  treemap = 'treemap',
+  sankey = 'sankey'
 )
 
 #' Initialize Google Charts
@@ -75,7 +76,7 @@ googleChartsInit <- function(chartTypes = c('ALL',
   tagList(
     tags$script(type='text/javascript', src='https://www.google.com/jsapi'),
     tags$script(HTML(
-      sprintf('google.load("visualization", "1", {packages: %s});',
+      sprintf('google.load("visualization", "1.1", {packages: %s});',
               RJSONIO::toJSON(libs))
     )),
     tags$script(src='googleCharts/bindings.js')
@@ -263,4 +264,10 @@ NULL
 #' @export
 googleTreeMap <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'treemap', width, height, options, ...)
+}
+
+#' @rdname googleChart
+#' @export
+googleSankey <- function(id, width, height, options = list(), ...) {
+  googleOutput(id, 'sankey', width, height, options, ...)
 }

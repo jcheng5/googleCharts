@@ -17,5 +17,6 @@ shinyUI(basicPage(
       yellowFrom = 70,
       yellowTo = 90
     )
-  )
+  ),
+  googleSankey('sankey', width='100%', height='200px')
 ))

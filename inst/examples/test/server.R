@@ -62,4 +62,15 @@ shinyServer(function(input, output, session) {
     })
   })
 
+  output$sankey <- reactive({
+    list(
+      data = googleDataTable(
+        data.frame(
+          From = c('Brazil', 'Brazil', 'Brazil', 'Brazil'),
+          To = c('Portugal', 'France', 'Spain', 'England'),
+          Weight = c(5, 1, 1, 1)
+        )
+      )
+    )
+  })
 })

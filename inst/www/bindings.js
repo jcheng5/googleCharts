@@ -135,6 +135,7 @@ var chartTypes = [
   ['table', 'Table', 'table'],
   ['timeline', 'Timeline', 'timeline'], // requires gvis 1.1...?
   ['treemap', 'TreeMap', 'treemap'],
+  ['sankey', 'Sankey', 'sankey']
 ];
 
 for (var i = 0; i < chartTypes.length; i++) {
