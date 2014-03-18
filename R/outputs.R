@@ -5,12 +5,14 @@ chartlibs = list(
   area = 'corechart',
   bar = 'corechart',
   bubble = 'corechart',
+  calendar = 'calendar',
   candlestick = 'corechart',
   column = 'corechart',
   combo = 'corechart',
   gauge = 'gauge',
   geo = 'geochart',
   geomap = 'geomap',
+  histogram = 'corechart',
   intensitymap = 'intensitymap',
   line = 'corechart',
   map = 'map',
@@ -20,7 +22,7 @@ chartlibs = list(
   scatter = 'corechart',
   steppedarea = 'corechart',
   table = 'table',
-  # timeline = 'timeline', # requires version 1.1...?
+  timeline = 'timeline',
   treemap = 'treemap',
   sankey = 'sankey'
 )
@@ -42,6 +44,7 @@ googleChartsInit <- function(chartTypes = c('ALL',
   'area',
   'bar',
   'bubble',
+  'calendar',
   'candlestick',
   'column',
   'combo',
@@ -54,10 +57,11 @@ googleChartsInit <- function(chartTypes = c('ALL',
   'motion',
   'org',
   'pie',
+  'sankey',
   'scatter',
   'steppedarea',
   'table',
-  # 'timeline',
+  'timeline',
   'treemap')) {
 
   addResourcePath('googleCharts', system.file('www', package='googleCharts'))
@@ -255,11 +259,6 @@ googleTable <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'table', width, height, options, ...)
 }
 
-# googleTimeline <- function(id, width, height, options = list(), ...) {
-#   googleOutput(id, 'timeline', width, height, options, ...)
-# }
-NULL
-
 #' @rdname googleChart
 #' @export
 googleTreeMap <- function(id, width, height, options = list(), ...) {
@@ -270,4 +269,22 @@ googleTreeMap <- function(id, width, height, options = list(), ...) {
 #' @export
 googleSankey <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'sankey', width, height, options, ...)
+}
+
+#' @rdname googleChart
+#' @export
+googleCalendar <- function(id, width, height, options = list(), ...) {
+  googleOutput(id, 'calendar', width, height, options, ...)
+}
+
+#' @rdname googleChart
+#' @export
+googleHistogram <- function(id, width, height, options = list(), ...) {
+  googleOutput(id, 'histogram', width, height, options, ...)
+}
+
+#' @rdname googleChart
+#' @export
+googleTimeline <- function(id, width, height, options = list(), ...) {
+  googleOutput(id, 'timeline', width, height, options, ...)
 }

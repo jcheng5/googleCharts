@@ -118,12 +118,14 @@ var chartTypes = [
   ['area', 'AreaChart', 'corechart'],
   ['bar', 'BarChart', 'corechart'],
   ['bubble', 'BubbleChart', 'corechart'],
+  ['calendar', 'Calendar', 'calendar'],
   ['candlestick', 'CandlestickChart', 'corechart'],
   ['column', 'ColumnChart', 'corechart'],
   ['combo', 'ComboChart', 'corechart'],
   ['gauge', 'Gauge', 'gauge'],
   ['geo', 'GeoChart', 'geochart'],
   ['geomap', 'GeoMap', 'geomap'],
+  ['histogram', 'Histogram', 'corechart'],
   ['intensitymap', 'IntensityMap', 'intensitymap'],
   ['line', 'LineChart', 'corechart'],
   ['map', 'Map', 'map'],
@@ -133,7 +135,7 @@ var chartTypes = [
   ['scatter', 'ScatterChart', 'corechart'],
   ['steppedarea', 'SteppedAreaChart', 'corechart'],
   ['table', 'Table', 'table'],
-  ['timeline', 'Timeline', 'timeline'], // requires gvis 1.1...?
+  ['timeline', 'Timeline', 'timeline'],
   ['treemap', 'TreeMap', 'treemap'],
   ['sankey', 'Sankey', 'sankey']
 ];

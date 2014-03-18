@@ -3,21 +3,25 @@
 \alias{googleAreaChart}
 \alias{googleBarChart}
 \alias{googleBubbleChart}
+\alias{googleCalendar}
 \alias{googleCandlestickChart}
 \alias{googleColumnChart}
 \alias{googleComboChart}
 \alias{googleGauge}
 \alias{googleGeoChart}
 \alias{googleGeoMap}
+\alias{googleHistogram}
 \alias{googleIntensityMap}
 \alias{googleLineChart}
 \alias{googleMap}
 \alias{googleMotionChart}
 \alias{googleOrgChart}
 \alias{googlePieChart}
+\alias{googleSankey}
 \alias{googleScatterChart}
 \alias{googleSteppedAreaChart}
 \alias{googleTable}
+\alias{googleTimeline}
 \alias{googleTreeMap}
 \title{Create a Google Chart}
 \usage{
@@ -69,6 +73,14 @@
   googleTable(id, width, height, options = list(), ...)
 
   googleTreeMap(id, width, height, options = list(), ...)
+
+  googleSankey(id, width, height, options = list(), ...)
+
+  googleCalendar(id, width, height, options = list(), ...)
+
+  googleHistogram(id, width, height, options = list(), ...)
+
+  googleTimeline(id, width, height, options = list(), ...)
 }
 \arguments{
   \item{id}{The output variable name for this chart.}
