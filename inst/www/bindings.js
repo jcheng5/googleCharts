@@ -15,12 +15,35 @@ function toDataTable(data) {
   var colnames = [];
   for (var i = 0; i < cols.length; i++) {
     colnames.push(cols[i].id);
+
+    if (cols[i].type === "date" || cols[i].type === "datetime") {
+      df[cols[i].id] = $.map(df[cols[i].id], function(datum, i) {
+        return new Date(datum);
+      });
+    } else if (cols[i].type === "timeofday") {
+      df[cols[i].id] = $.map(df[cols[i].id], function(datum, i) {
+        return toTimeOfDay(datum);
+      });
+    }
   }
   
   return new google.visualization.DataTable({
     cols: cols,
     rows: dataFrameToRows(df, colnames)
   });
+}
+
+function toTimeOfDay(timeStr) {
+  var match = /^(\d{2}):(\d{2}):(\d{2})(\.(\d{1,3}))?$/.exec(timeStr);
+  if (!match) {
+    console.log("Invalid timeofday value (hh:mm:ss.fff expected): " + timeStr);
+    return null;
+  }
+  var hours = parseInt(match[1]);
+  var mins = parseInt(match[2]);
+  var secs = parseInt(match[3]);
+  var millis = parseInt(match[5] || 0);
+  return [hours, mins, secs, millis];
 }
 
 // Google Charts always require data to be in their DataTable class.

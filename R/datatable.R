@@ -97,7 +97,7 @@ googleDataType.Date <- function(x) {
   'date'
 }
 
-googleDataType.POSIXt <- function(x) {
+googleDataType.POSIXct <- function(x) {
   'datetime'
 }
 

@@ -1,3 +1,10 @@
+setMethod("toJSON", "Date",
+          function(x, container =  isContainer(x, asIs, .level),
+                   collapse = "\n", ..., .level = 1L,
+                   .withNames = length(x) > 0 && length(names(x)) > 0, .na = "null", pretty = FALSE, asIs = NA) {
+            toJSON(gsub("-", "/", as.character(x)), container, collapse, ..., .level = .level, .withNames = .withNames, .na = .na, pretty = pretty, asIs = asIs)
+          })
+
 chartlibs = list(
   corechart = 'corechart',
 
