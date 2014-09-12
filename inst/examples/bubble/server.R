@@ -4,11 +4,14 @@ shinyServer(function(input, output, session) {
   yearData <- reactive({
     # Filter to the desired year, and put the columns
     # in the order that Google's Bubble Chart expects
-    # them (name, x, y, color, size)
+    # them (name, x, y, color, size). Also sort by region
+    # so that Google Charts colors the regions consistently
+    # (thanks Prof. Gelman).
     df <- data %.%
       filter(Year == input$year) %.%
       select(Country, Health.Expenditure, Life.Expectancy,
-        Region, Population)
+        Region, Population) %.%
+      arrange(Region)
   })
 
   output$chart <- reactive({
