@@ -17,10 +17,10 @@ shinyServer(function(input, output, session) {
     # them (name, x, y, color, size). Also sort by region
     # so that Google Charts orders and colors the regions
     # consistently.
-    df <- data %.%
-      filter(Year == input$year) %.%
+    df <- data %>%
+      filter(Year == input$year) %>%
       select(Country, Health.Expenditure, Life.Expectancy,
-        Region, Population) %.%
+        Region, Population) %>%
       arrange(Region)
   })
 
