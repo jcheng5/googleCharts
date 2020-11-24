@@ -149,7 +149,6 @@ var chartTypes = [
   ['geo', 'GeoChart', 'geochart'],
   ['geomap', 'GeoMap', 'geomap'],
   ['histogram', 'Histogram', 'corechart'],
-  ['intensitymap', 'IntensityMap', 'intensitymap'],
   ['line', 'LineChart', 'corechart'],
   ['map', 'Map', 'map'],
   ['motion', 'MotionChart', 'motionchart'],

@@ -1,3 +1,6 @@
+#' @importFrom RJSONIO toJSON
+NULL
+
 setMethod("toJSON", "Date",
           function(x, container =  isContainer(x, asIs, .level),
                    collapse = "\n", ..., .level = 1L,
@@ -20,7 +23,6 @@ chartlibs = list(
   geo = 'geochart',
   geomap = 'geomap',
   histogram = 'corechart',
-  intensitymap = 'intensitymap',
   line = 'corechart',
   map = 'map',
   motion = 'motionchart',
@@ -58,7 +60,6 @@ googleChartsInit <- function(chartTypes = c('ALL',
   'gauge',
   'geo',
   'geomap',
-  'intensitymap',
   'line',
   'map',
   'motion',
@@ -210,12 +211,6 @@ googleGeoChart <- function(id, width, height, options = list(), ...) {
 #' @export
 googleGeoMap <- function(id, width, height, options = list(), ...) {
   googleOutput(id, 'geomap', width, height, options, ...)
-}
-
-#' @rdname googleChart
-#' @export
-googleIntensityMap <- function(id, width, height, options = list(), ...) {
-  googleOutput(id, 'intensitymap', width, height, options, ...)
 }
 
 #' @rdname googleChart
