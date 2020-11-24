@@ -78,11 +78,11 @@ googleChartsInit <- function(chartTypes = c('ALL',
   if ('ALL' %in% chartTypes) {
     libs <- as.character(unique(chartlibs))
   } else {
-    libs <- sapply(chartTypes, function(type) {
-      if (is.null(chartlibs[[type]]))
-        stop('Unknown chart type ', type)
-      return(chartlibs[[type]])
-    })
+    unknown <- !chartTypes %in% names(chartlibs)
+    if (any(unknown)) {
+      stop("Unknown chart type ", chartTypes[[which(unknown)[1]]])
+    }
+    libs <- unname(chartlibs[chartTypes])
   }
 
   tagList(

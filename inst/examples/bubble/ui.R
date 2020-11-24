@@ -17,7 +17,7 @@ ylim <- list(
 
 shinyUI(fluidPage(
   # This line loads the Google Charts JS library
-  googleChartsInit(),
+  googleChartsInit("bubble"),
 
   # Use the Google webfont "Source Sans Pro"
   tags$link(
